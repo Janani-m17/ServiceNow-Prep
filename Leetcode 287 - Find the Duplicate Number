@@ -1,0 +1,27 @@
+// Leetcode 287 - Find the Duplicate Number
+
+class Solution {
+public:
+    int findDuplicate(vector<int>& nums) {
+        
+        // Using FLoyd's Algorithm
+
+        int slow = 0, fast = 0;
+
+        do{
+            slow = nums[slow]; 
+            fast = nums[nums[fast]];
+        } while(slow != fast);
+
+        // fast will be in meeting position
+
+        slow = 0;
+
+        while(slow != fast){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+
+        return fast;   // can return any one slow or fast
+    }
+};
